@@ -12,6 +12,10 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt-get install -y ansible
 ansible --version
 
+apt-cache search ansible-lint
+sudo apt-get install -y ansible-lint
+
+
 
 
 
