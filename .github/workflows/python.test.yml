@@ -12,7 +12,17 @@ jobs:
       # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: \${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
 
+      - name: Create AWS EC2 instance
+        run: |
+          aws ec2 run-instances --image-id ami-00bb6a80f01f03502 --count 1 --instance-type t2.micro
+          
       # Step 2: Execute the script and capture the output
       - name: Execute the script and capture the output
         run: |
