@@ -1,0 +1,26 @@
+name: Python Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  python:
+    runs-on: self-hosted # Ensure your self-hosted runner is properly configured
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Execute the script and capture the output
+      - name: Execute the script and capture the output
+        run: |
+          python3 tar.py > output.log
+
+      # Step 3: Upload the output as an artifact
+      - name: Upload output
+        uses: actions/upload-artifact@v4
+        with:
+          name: execution-output
+          path: output.log
